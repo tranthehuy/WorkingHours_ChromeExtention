@@ -1,17 +1,21 @@
-// console.log('test', window._extensionContext)
-function checkTime() {
+alert("Please scroll down to load all");
+setTimeout(() => {
   var $ = window.jQuery;
-  if ($) {
-    var startTime = $($('.today-active .ltby-txt')[0]).text();
-    var startTimeValue = (startTime + '').split(":");
-    var startH = startTimeValue[0] - 0;
-    var startM = startTimeValue[1] - 0;
-    var endH = (new Date()).getHours() - 0;
-    var endM = (new Date()).getMinutes() - 0;
-    var length = endH + endM/60 - 1.25 - (startH + startM/60);
-    length = Math.floor(length * 100) / 100;
-    alert('You worked ' + length + 'h');
-  }
-}
-
-checkTime();
+  var tasks = [];
+  var trim = (text) => {  return (text || "").trim() };
+  $(".board-card").each((index, card) => {
+    var a = $(card).find("h4.board-card-title a");
+    var cardTitle = trim(a.text());
+    var img = $(card).find("img");
+    var worker = trim((img.attr("alt") || '').replace("Avatar for ", ''));
+    var dateTag = $(card).find("date");
+    var dateStr = trim(dateTag.text());
+    var cardNumber = trim($(card).find(".board-card-number").text());
+    if (worker) {
+      var line = cardNumber + "," + cardTitle + "," + worker + "," + dateStr + ",";
+      line = line.replace(/\n/g,"");
+      tasks.push(line);
+    }
+  })
+  console.log(tasks.join("\n"));
+}, 2000);
