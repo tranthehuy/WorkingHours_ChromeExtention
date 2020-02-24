@@ -8,7 +8,7 @@ setTimeout(() => {
     var cardTitle = trim(a.text());
     var img = $(card).find("img");
     var worker = trim((img.attr("alt") || '').replace("Avatar for ", ''));
-    var dateTag = $(card).find("date");
+    var dateTag = $(card).find(".board-card-info.card-number");
     var dateStr = trim(dateTag.text());
     var cardNumber = trim($(card).find(".board-card-number").text());
     if (worker) {
@@ -18,4 +18,4 @@ setTimeout(() => {
     }
   })
   console.log(tasks.join("\n"));
-}, 2000);
+}, 1000);
