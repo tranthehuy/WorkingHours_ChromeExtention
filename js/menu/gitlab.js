@@ -11,11 +11,10 @@ setTimeout(() => {
     var dateTag = $(card).find(".board-card-info.card-number");
     var dateStr = trim(dateTag.text());
     var cardNumber = trim($(card).find(".board-card-number").text());
-    if (worker) {
-      var line = cardNumber + "," + cardTitle + "," + worker + "," + dateStr + ",";
-      line = line.replace(/\n/g,"");
-      tasks.push(line);
-    }
+
+    var line = cardNumber + "," + cardTitle + "," + worker + "," + dateStr + ",";
+    line = line.replace(/\n/g,"");
+    tasks.push(line);
   })
   console.log(tasks.join("\n"));
 }, 1000);
